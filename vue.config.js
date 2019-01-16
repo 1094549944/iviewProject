@@ -14,12 +14,11 @@ module.exports = {
   chainWebpack: config => {
     config.resolve.alias
       .set('@', resolve('src'))
-        .set('_c', resolve('src/components')),
-        
+      .set('_c', resolve('src/components'))
   },
   //打包时不生成.map文件，同时加快打包速度
-    procutionSourceMap: false,
-    devServer: {
-        proxy:'http://localhost:4000'
-    }
+  // procutionSourceMap: false,
+  devServer: {
+    proxy: 'http://localhost:4000'
+  }
 }
