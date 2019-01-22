@@ -20,15 +20,12 @@ export default {
   },
   methods: {
     getData: function () {
-
-      let dataValue = JSON.stringify(this.data)
+      const dataValue = JSON.stringify(this.data)
       console.log(dataValue)
       this.axios.post('http://localhost:5000/test', {
         data: dataValue
       }).then((response) => {
-
         console.log(response)
-
       }).catch((response) => {
         console.log(response)
       })
