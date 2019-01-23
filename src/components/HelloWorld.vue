@@ -1,9 +1,6 @@
 <template>
   <div>
     基本信息
-    ======={{res.phoneNo}}
-    data-phoneNo="phoneNo" value="res['phoneNo']" name="res['phoneNo']+Name"
-
     <ul
       v-for="(value,index) in localJson.data.infoList"
       :key="index"
@@ -52,6 +49,9 @@
       <li><span>{{value.label}}</span>====<span>{{value.value}}</span></li>
     </ul>
     <hr />
+
+    <div>修改2</div>
+    <div>{{localJson}}</div>
   </div>
 </template>
 <script>
@@ -59,26 +59,64 @@ export default {
   data () {
     return {
       res: {
-        phoneNo: '123230423',
-        patientName: '海绵宝宝',
-        copyPurpose: {
+        'phoneNO': '123230423',
+        'patientName': '海绵宝宝',
+        'cardID': '130283199208976541',
+        'inPatientNo': '1243vsafd_fddsa',
+        'lengthOfStay': '2018-09-12至2018-11-12',
+        'agentName': '王五',
+        'agentIdCard': '13028319920123124',
+        'copyPurpose': {
           // 复印用途
-          value: '001',
-          name: "保险报销",
+          'value': '001',
+          'name': "保险报销",
           //复印用途列表
-          list: [
+          'list': [
             {
-              value: '001',
-              name: '保险报销'
+              'value': '001',
+              'name': '保险报销'
             },
             {
-              value: '002',
-              name: '转院治疗'
+              'value': '002',
+              'name': '转院治疗'
             }
           ]
         },
-
-
+        'copyRangeType': {
+          'value': '001',
+          'name': "保险报销",
+          // 复印项目列表
+          'list': [
+            {
+              'name': '全部复印',
+              value: '001'
+            },
+            {
+              name: '仅复印首页',
+              value: '002'
+            }
+          ]
+        },
+        'copyNum': {
+          'value': '1',
+          'name': "1份",
+        },
+        'postWay': {
+          'name': '邮寄配送',
+          'value': '001',
+          'list': [{
+            'name': '邮寄配送',
+            'value': '001'
+          }, {
+            'name': '自取',
+            'value': '002'
+          }]
+        },
+        'postAddress': '北京市北京海淀区',
+        'postcode': '00000',
+        'postName': '海绵宝宝',
+        'postPhone': '183330312345',
+        'postCollect': '1'
       },
       response: {
         data: {
@@ -210,12 +248,12 @@ export default {
             {
               //收件人姓名
               key: 'postName',
-              value: '海绵宝宝'
+              value: '张三'
             },
             {
               //联系电话
               key: 'postPhone',
-              value: '183330312345'
+              value: '138*******1'
             },
             {
               //邮寄到付
@@ -361,7 +399,14 @@ export default {
               errMsgEmpty: '复印份数不能为空',
               //复印份数列表
               list: [
-
+                { name: '1份', value: 1 },
+                { name: '2份', value: 2 },
+                { name: '3份', value: 3 },
+                { name: '4份', value: 4 },
+                { name: '5份', value: 5 },
+                { name: '6份', value: 6 },
+                { name: '7份', value: 7 },
+                { name: '8份', value: 8 },
               ]
             }
           ],
@@ -445,8 +490,6 @@ export default {
           ]
         }
       },
-      getData: {}
-
     }
   },
   created () {
@@ -454,7 +497,8 @@ export default {
   },
   methods: {
     getDataFun () {
-      this.concatData(this.localJson.data, this.response.data)
+      //   this.concatData(this.localJson.data, this.response.data)
+      this.getDataFun2()
     },
 
     //赋值
@@ -483,6 +527,50 @@ export default {
       //console.log(localJson)
       // this.render(localJson)
     },
+    // 处理方式2
+    getDataFun2: function () {
+
+      var localJSON = this.localJson.data
+      var infoList = localJSON.infoList
+      var copyInfo = localJSON.copyInfo
+      var postProjectInfo = localJSON.postProjectInfo
+      var transportList = localJSON.transportList
+
+      // for (var item in localJSON) {
+      //   this.renderFun(localJSON[item])
+      // }
+      // 渲染基础信息
+      for (var value in infoList) {
+        infoList[value]['value'] = this.res[infoList[value]['key']]
+
+      }
+
+
+
+      // 渲染邮寄地址
+      for (var value in postProjectInfo) {
+        postProjectInfo[value]['value'] = this.res[postProjectInfo[value]['key']].value
+        postProjectInfo[value]['name'] = this.res[postProjectInfo[value]['key']].name
+        if (this.res[postProjectInfo[value]['key']].hasOwnProperty('list')) {
+          postProjectInfo[value]['list'] = this.res[postProjectInfo[value]['key']].list
+        }
+      }
+      // 渲染邮寄信息
+
+      for (var value in transportList) {
+        transportList[value]['value'] = this.res[transportList[value]['key']]
+      }
+    },
+    // 渲染数据方法
+    renderFun: function (data) {
+      for (var value in data) {
+        data[value]['value'] = this.res[data[value]['key']].value
+        data[value]['name'] = this.res[data[value]['key']].name
+        if (this.res[data[value]['key']].hasOwnProperty('list')) {
+          data[value]['list'] = this.res[data[value]['key']].list
+        }
+      }
+    }
   },
 }
 </script>
