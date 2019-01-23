@@ -37,4 +37,7 @@ export default {
 </script>
 
 <style scoped>
+button {
+  background: pink;
+}
 </style>

@@ -1,5 +1,5 @@
 import Home from '@/views/Home.vue'
-
+import Store from '@/views/Store.vue'
 export default [
   {
     path: '/',
@@ -18,8 +18,6 @@ export default [
   {
     path: '/store',
     name: 'store',
-    component: () => {
-      import(/* webpackChunkName: "store" */ '../views/Store.vue')
-    }
+    component: Store
   }
 ]

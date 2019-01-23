@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div> 我是ashow=======> {{content}}</div>
-    <div>我要接收bus=====>{{msg}}</div>
+    <div> 我是ashow=======> <label for="">{{content}}</label></div>
+    <div>我要接收bus=====><span for="">{{msg}}</span></div>
   </div>
   </div>
   </div>
@@ -31,4 +31,10 @@ export default {
 </script>
 
 <style scoped>
+span {
+  background: pink;
+}
+label {
+  background: orchid;
+}
 </style>
