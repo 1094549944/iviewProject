@@ -31,7 +31,7 @@
 <script>
 import jia_input from '_c/jia_input.vue'
 import Ashow from '_c/Ashow.vue'
-import { mapState } from 'vuex'//es6 的解构赋值
+import { mapState } from 'vuex'// es6 的解构赋值
 export default {
   name: 'store',
   data () {
@@ -60,9 +60,6 @@ export default {
     },
     userNameFun () {
       return this.$store.state.user.userName
-    },
-    getMapState () {
-
     }
   }
 }
