@@ -21,7 +21,7 @@
     <div>使用module中的user ,来接收user中的userName=====><span>{{userNameFun}}</span></div>
     <br />
     <hr />
-    <div>使用mapState接收数值=====appName===={{appName}}<br /> ======userName====<span>{{userName}}</span></div>
+    <!-- <div>使用mapState接收数值=====appName===={{appName}}<br /> ======userName====<span>{{userName}}</span></div> -->
     <br />
     <hr />
     <div>使用命名空间</div>
@@ -30,9 +30,9 @@
     <hr />
     <hr />
     <div>使用getters</div>
-    <div>直接使用getters==={{getGetterName}}</div>
-    <div>{{getAppNameWithVersion}}</div>
-    <div>使用mapGetters =====>{{getAppNameWithVersionFun}}</div>
+    <div>直接使用getters===<span>{{getAppNameWithVersionFun}}</span></div>
+    <div>使用mapGetters =====><span>{{appNameWithVersion}}</span></div>
+    <div>获取模块内的getters=====><span>{{userNameWithFirstLetter}}</span></div>
   </div>
 </template>
 
@@ -56,6 +56,7 @@ export default {
 
     }
   },
+
   components: {
     jia_input,
     Ashow
@@ -90,19 +91,17 @@ export default {
 
 
     // 获取gettters 的内容
-    getAppNameWithVersion () {
+    getAppNameWithVersionFun () {
       return this.$store.getters.appNameWithVersion
     },
-
     // 直接获取
     getGetterName () {
       return this.$store.getters.appNameWithVersion
-    }
+    },
+    // 获取模块内的名字
+    ...mapGetters(['appNameWithVersion']),
+    ...mapGetters('user', ['userNameWithFirstLetter'])
 
-
-    // ...mapGetters({
-    //   getAppNameWithVersionFun: state => state.getAppNameWithVersionFun
-    // })
   }
 }
 </script>
